@@ -1,5 +1,5 @@
 function saludar (nombre){
-    return `Hola ${nombre}`
+  console.log(`Hola ${nombre}`)
 }
 
 function despedida (nombre){
