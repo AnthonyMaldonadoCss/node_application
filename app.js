@@ -47,33 +47,98 @@ const os = require('os');
 // console.log(os.userInfo());
 
 /**
- * Modulo Timers
+ * Módulo Timers
+ * setTimeout => esperar el tiempo programado para ejecutar la función
  */
 
-const base = 2000
+// const base = 2000
 
-const mostrarTema = function(tema){
-   console.log( `Estoy aprendiendo ${tema}`)
-}
+// const mostrarTema = function(tema){
+//    console.log( `Estoy aprendiendo ${tema}`)
+// }
 
-setTimeout(mostrarTema, base, 'Node')
-setTimeout(saludar, base + 1000, 'Anthony')
+// setTimeout(mostrarTema, base, 'Node')
+// setTimeout(saludar, base + 1000, 'Anthony')
 
-const sumar = function (a,b){
-    console.log(a+b);
-}
+// const sumar = function (a,b){
+    // console.log(a+b);
+// }
 
-setTimeout(sumar, 2000, 6,7)
+// setTimeout(sumar, 2000, 6,7)
 
-const restar = function(a,b){
-    console.log(a-b)
-}
-console.log("linea antes");
+// const restar = function(a,b){
+    // console.log(a-b)
+// }
+// console.log("linea antes");
 
 //setImmediate(nombreFuncion, arg1, argN)
-setImmediate(restar,5,10)
+// setImmediate(restar,5,10)
 // se ejecuta despues del codigo sincrono programado
-console.log("linea despues");
+// console.log("linea despues");
 
 // setInterval(mostrarTema, 5000, 'NODE')
-setInterval(sumar, 1500,2,3 )
+// setInterval(sumar, 1500,2,3 )
+
+
+/**
+ * Módulo Fs
+ */
+
+
+//leer archivos
+const fs = require('fs');
+// fs.readFile('inde.html','utf8',(err,resp)=>{
+//   if(err){
+    // //   console.log(err);
+    //   throw err;
+    // //   la diferencia radica en que el throw va a detener la ejecucion del código 
+//   } 
+//   console.log(resp);
+
+// })
+
+
+//renombrar archivos
+// fs.rename('index.html','main.html',(err)=>{
+    // if(err){
+        // throw err;
+    // }
+    // console.log("nombre cambiado exitosamente");
+// })
+
+//agregar contenido al final del archivo
+// fs.appendFile('main.html','<p>Hola</p>',(err)=>{
+    // if(err){
+        // throw err;
+    // }
+    // console.log('Archivo actualizado');
+// })
+
+//Reemplazar todo el conteido del archivo
+// fs.writeFile('main.html','<p>Contenido nuevo</p>',(err)=>{
+    // if(err){
+        // throw err;
+    // }
+    // console.log('contenido actualizado exitosamente');
+// })
+
+
+// Eliminar el archivo
+// fs.unlink('main.html',(err)=>{
+//     if(err) throw err;
+//     console.log("Archivo eliminado")
+// })
+
+/**
+ * utilizando las versiones sincronas de estos metodos
+ */
+
+// const readFile = fs.readFileSync('main.html','utf-8')
+// console.log(readFile);
+
+//los metodos sincronos no manejan funciones de callbacks
+//ya que podemos almacenar el error en una variable
+
+/**
+ * NPM Y NODE.JS
+ */
