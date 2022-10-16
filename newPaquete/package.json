@@ -1,0 +1,22 @@
+{
+  "name": "new-package",
+  "version": "1.0.0",
+  "description": "Mi primer paquete de Node.js",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/AnthonyMaldonadoCss/node_application.git"
+  },
+  "keywords": [
+    "init"
+  ],
+  "author": "Anthony Maldonado",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/AnthonyMaldonadoCss/node_application/issues"
+  },
+  "homepage": "https://github.com/AnthonyMaldonadoCss/node_application#readme"
+}
