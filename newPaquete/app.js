@@ -45,21 +45,21 @@ const manejarPromesaRechazada = (valor) =>{
 // segundo parametro cuando es rechazado
 
 
-const estatusPedido = () =>{
-    const estatus = Math.random() < 0.8;
-    console.log(estatus);
-    return estatus
-}
+// const estatusPedido = () =>{
+    // const estatus = Math.random() < 0.8;
+    // console.log(estatus);
+    // return estatus
+// }
 
-const miPedidoPizza = new Promise((resolve,reject)=>{
-    setTimeout(()=>{
-        if(estatusPedido()){
-            resolve("PEDIDO EXITOSO, SU PIZZA ESTA EN CAMINO")
-        }else{
-            reject("OCURRIO UN ERROR, INTENTE NUEVAMENTE")
-        }
-    },3000)
-})
+// const miPedidoPizza = new Promise((resolve,reject)=>{
+    // setTimeout(()=>{
+        // if(estatusPedido()){
+            // resolve("PEDIDO EXITOSO, SU PIZZA ESTA EN CAMINO")
+        // }else{
+            // reject("OCURRIO UN ERROR, INTENTE NUEVAMENTE")
+        // }
+    // },3000)
+// })
 
 
 // miPedidoPizza
@@ -71,10 +71,69 @@ const miPedidoPizza = new Promise((resolve,reject)=>{
 // })
 
 //Method Chaining
-miPedidoPizza
-    .then((mensajeConfirmacion)=>{
-        console.log(mensajeConfirmacion);
-    })
-    .catch((mensajeRechazo)=>{
-        console.log(mensajeRechazo);
-    })
+// miPedidoPizza
+    // .then((mensajeConfirmacion)=>{
+        // console.log(mensajeConfirmacion);
+    // })
+    // .catch((mensajeRechazo)=>{
+        // console.log(mensajeRechazo);
+    // })
+
+let producto = {
+    "name": "Taza de café",
+    "cantidad": 10,
+    "type": "taza"
+}
+
+function ordenarProducto(producto){
+    return new Promise((resolve, reject) => {
+        console.log(`Ordenando: ${producto.name}, por la cantidad de ${producto.cantidad}`);
+        setTimeout(() => {
+            if(producto.type === "taza"){
+                resolve("Ordenando una taza")
+            }else {
+                reject("No se ha podido completar el pedido, no esta disponible el producto")
+            }
+        }, 2000);
+    });
+}
+
+function procesarPedido(respuesta){
+    return new Promise((resolve, reject) => {
+        console.log("Procesando respuesta")
+        console.log(`La respuesta fue "${respuesta}"`);
+        setTimeout(() => {
+            resolve("Pedido procesado, gracias")           
+        }, 4000);
+    });
+}
+// ordenarProducto(producto)
+//     .then(respuesta =>{
+//         console.log(`respuesta recibida ${respuesta}`);
+//         return procesarPedido(respuesta)
+//     })
+//     .then(respuestaProcesada=>{
+//         console.log(`Respuesta procesada`);
+//         console.log(respuestaProcesada);
+//     })
+//     .catch(err =>{
+//         console.log(err);
+//     })
+
+/**
+ * equivalente al código anterior
+ */
+
+async function realizarPedido(producto){
+    try{
+        const respuesta = await ordenarProducto(producto);
+        console.log(respuesta);
+        const respuestaProcesada = await procesarPedido(respuesta)
+        console.log(respuestaProcesada);
+    } catch (err) {
+        console.log(err);
+        // throw(err)
+    }
+}
+
+realizarPedido(producto)
