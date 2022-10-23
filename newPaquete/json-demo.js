@@ -15,6 +15,8 @@ let infoCurso = {
     "esPublico": true
 }
 
+//JSON.stringify
+
 console.log(typeof(infoCurso));
 let infoJSON = JSON.stringify(infoCurso);
 console.log(typeof(infoJSON));
