@@ -12,10 +12,24 @@ const servidor = http.createServer((req, res)=>{
     // console.log(req.headers);
 
     console.log(`===> res(respuesta)`);
-    console.log(req);
+    // console.log(req);
+    console.log(res.statusCode); //puede cambiarse
+    res.statusCode =  200
+    console.log(res.statusCode);
+
+    //setear el header
+   let headers ={
+    'Content-Type':'application-json',
+    'Accept':'aplication-json'
+   }
+    
+    res.setHeader("content-type","application-json");
+
+    
+    console.log(res.getHeaders());
 
 
-    res.end("Request")
+    res.end("Response")
 })
 
 servidor.listen(PUERTO,()=>{
