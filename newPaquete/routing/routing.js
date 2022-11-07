@@ -1,5 +1,5 @@
 const http = require('http');
-const cursos = require('./cursos');
+const {infoCursos} = require('./cursos');
 
 const servidor = http.createServer((req, res) =>{
 
@@ -33,19 +33,20 @@ function manejarSolicitudGET(req,res){
     console.log(path);
     if(path == '/'){
         res.statusCode =  200; //SUCCESS
+        res.writeHead(200,{"content-type":"application-json", "saludo":"hola headers"})
         res.end('Bienvenidos a mi primer servidor \n y API creados con Node.js')
     }
     else if(path == '/cursos'){
         res.statusCode =  200; //este codigo esta por defecto, no es necesario indicarlo
-        return res.end(JSON.stringify(cursos.infoCursos))
+        return res.end(JSON.stringify(infoCursos))
     }
     else if(path == '/cursos/matematicas'){
         res.statusCode =  200;
-        return res.end(JSON.stringify(cursos.infoCursos.matematicas))
+        return res.end(JSON.stringify(infoCursos.matematicas))
     }
     else if(path == '/cursos/programacion'){
         res.statusCode =  200;
-        return res.end(JSON.stringify(cursos.infoCursos.programacion))
+        return res.end(JSON.stringify(infoCursos.programacion))
     }
     else {
         res.statusCode = 404; //recurso no encontrado
@@ -57,8 +58,24 @@ function manejarSolicitudPOST(req,res){
 
     if(path === '/cursos/programacion'){
         res.statusCode =  200;
-        // console.log(req.data);
-        res.end(`Se recibio una solicitud POST para actualizar los cursos`)
+        let cuerpo = '';
+        req.on('data', contenido => { //enviando body en el request
+            cuerpo += contenido.toString();
+        });
+
+        req.on('end', ()=>{
+            console.log(cuerpo);
+            console.log(typeof cuerpo);
+            cuerpo = JSON.parse(cuerpo)
+            console.log(cuerpo);
+            console.log(cuerpo.curso);
+            res.end(`Se recibio una solicitud POST para actualizar los cursos`)
+        })
+
+    }
+    else {
+        res.statusCode = 404; //recurso no encontrado
+        return res.end('Ruta no encontrada en el servidor \n solo puede ser actualizado el curso programacion')
     }
 }
 
