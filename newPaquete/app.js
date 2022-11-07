@@ -110,9 +110,9 @@ function procesarPedido(respuesta){
 // ordenarProducto(producto)
 //     .then(respuesta =>{
 //         console.log(`respuesta recibida ${respuesta}`);
-//         return procesarPedido(respuesta)
+//         return procesarPedido(respuesta) //esoy llamando a otra promesa
 //     })
-//     .then(respuestaProcesada=>{
+//     .then(respuestaProcesada=>{ //encadeno nuevamente
 //         console.log(`Respuesta procesada`);
 //         console.log(respuestaProcesada);
 //     })
@@ -124,7 +124,7 @@ function procesarPedido(respuesta){
  * equivalente al código anterior
  */
 
-async function realizarPedido(producto){
+const realizarPedido = async function (producto){
     try{
         const respuesta = await ordenarProducto(producto);
         console.log(respuesta);
